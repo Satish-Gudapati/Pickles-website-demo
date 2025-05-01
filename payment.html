@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Pickles Paradise</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-header h1 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .payment-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .order-summary h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .order-item-quantity {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .order-item-price {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-top: 20px;
+            border-top: 2px solid #eee;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .delivery-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .delivery-info h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #2ecc71;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .upi-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .upi-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .upi-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .upi-id {
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            font-size: 1.2em;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .upi-qr {
+            width: 200px;
+            height: 200px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+
+        .upi-qr img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .payment-instructions {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .payment-instructions h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .instructions-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .instructions-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .instructions-list li:before {
+            content: "•";
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .screenshot-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .screenshot-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .screenshot-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .upload-area {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            border: 2px dashed #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .upload-area:hover {
+            border-color: #2ecc71;
+            background: #f8f9fa;
+        }
+
+        .upload-area.dragover {
+            border-color: #2ecc71;
+            background: #f0f9f4;
+        }
+
+        .upload-icon {
+            font-size: 2em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .upload-text {
+            color: #666;
+            text-align: center;
+        }
+
+        .upload-text strong {
+            color: #2ecc71;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .remove-screenshot {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .remove-screenshot:hover {
+            background: #c0392b;
+        }
+
+        .payment-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .verify-btn, .cancel-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .verify-btn {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .verify-btn:hover {
+            background: #27ae60;
+        }
+
+        .verify-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .cancel-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background: #c0392b;
+        }
+
+        .payment-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .payment-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .payment-failed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Pickles Paradise</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="payment-header">
+            <h1>Complete Your Payment</h1>
+            <p>Please follow the instructions below to complete your purchase</p>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="order-items"></div>
+            <div class="order-total">
+                <span>Total Amount:</span>
+                <span id="total-amount">₹0</span>
+            </div>
+        </div>
+
+        <!-- Delivery Information -->
+        <div class="delivery-info">
+            <h2>Delivery Information</h2>
+            <form id="delivery-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="full-name">Full Name *</label>
+                        <input type="text" id="full-name" required>
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+                        <div class="error-message" id="phone-error"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address *</label>
+                    <textarea id="address" required placeholder="Enter your complete delivery address"></textarea>
+                    <div class="error-message" id="address-error"></div>
+                </div>
+            </form>
+        </div>
+
+        <!-- UPI Payment Section -->
+        <div class="upi-section">
+            <h2>UPI Payment Details</h2>
+            <div class="upi-details">
+                <div class="upi-id">picklesparadise@upi</div>
+                <div class="upi-qr">
+                    <img src="upi-qr.png" alt="UPI QR Code">
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Instructions -->
+        <div class="payment-instructions">
+            <h2>Payment Instructions</h2>
+            <ul class="instructions-list">
+                <li>Open your UPI payment app (Google Pay, PhonePe, Paytm, etc.)</li>
+                <li>Scan the QR code shown above or enter the UPI ID manually</li>
+                <li>Enter the amount shown in the order summary</li>
+                <li>Add a note with your order reference number</li>
+                <li>Complete the payment in your UPI app</li>
+                <li>Click the "Verify Payment" button after completing the payment</li>
+            </ul>
+        </div>
+
+        <!-- Screenshot Upload Section -->
+        <div class="screenshot-section">
+            <h2>Upload Payment Screenshot</h2>
+            <div class="screenshot-upload">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-text">
+                        <p>Drag and drop your payment screenshot here</p>
+                        <p>or <strong>click to browse</strong></p>
+                        <p class="file-types">Supported formats: JPG, PNG</p>
+                    </div>
+                    <input type="file" class="file-input" id="file-input" accept="image/*">
+                </div>
+                <img id="preview-image" class="preview-image" alt="Payment Screenshot">
+                <button class="remove-screenshot" id="remove-screenshot">Remove Screenshot</button>
+                <div class="error-message" id="error-message"></div>
+            </div>
+        </div>
+
+        <!-- Payment Actions -->
+        <div class="payment-actions">
+            <button class="verify-btn" onclick="verifyPayment()">Verify Payment</button>
+            <button class="cancel-btn" onclick="cancelPayment()">Cancel Order</button>
+        </div>
+
+        <!-- Payment Status -->
+        <div id="payment-status" class="payment-status"></div>
+    </section>
+
+    <!-- WhatsApp Contact Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        Contact Support
+    </a>
+
+    <script>
+        // Get order details from localStorage
+        const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+        
+        // Display order items
+        const orderItemsContainer = document.getElementById('order-items');
+        if (orderDetails) {
+            orderItemsContainer.innerHTML = `
+                <div class="order-item">
+                    <div class="order-item-details">
+                        <div class="order-item-name">${orderDetails.productName}</div>
+                        <div class="order-item-quantity">Quantity: ${orderDetails.quantity}</div>
+                    </div>
+                    <div class="order-item-price">₹${orderDetails.price * orderDetails.quantity}</div>
+                </div>
+            `;
+            
+            // Display total amount
+            document.getElementById('total-amount').textContent = `₹${orderDetails.total}`;
+        }
+
+        // Form validation
+        function validateForm() {
+            const fullName = document.getElementById('full-name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            let isValid = true;
+
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            // Validate name
+            if (fullName.length < 2) {
+                document.getElementById('name-error').textContent = 'Please enter a valid name';
+                document.getElementById('name-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate phone
+            if (!/^[0-9]{10}$/.test(phone)) {
+                document.getElementById('phone-error').textContent = 'Please enter a valid 10-digit phone number';
+                document.getElementById('phone-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate address
+            if (address.length < 10) {
+                document.getElementById('address-error').textContent = 'Please enter a complete delivery address';
+                document.getElementById('address-error').style.display = 'block';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Screenshot upload functionality
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
+        const previewImage = document.getElementById('preview-image');
+        const removeButton = document.getElementById('remove-screenshot');
+        const verifyButton = document.getElementById('verify-btn');
+        const errorMessage = document.getElementById('error-message');
+
+        // Handle drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            handleFile(file);
+        });
+
+        // Handle click to upload
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            handleFile(file);
+        });
+
+        // Handle file selection
+        function handleFile(file) {
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                errorMessage.textContent = 'Please upload an image file';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+                removeButton.style.display = 'block';
+                verifyButton.disabled = false;
+                errorMessage.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Handle remove screenshot
+        removeButton.addEventListener('click', () => {
+            previewImage.src = '';
+            previewImage.style.display = 'none';
+            removeButton.style.display = 'none';
+            verifyButton.disabled = true;
+            fileInput.value = '';
+        });
+
+        // Verify payment function
+        function verifyPayment() {
+            if (!validateForm()) {
+                return;
+            }
+
+            if (!previewImage.src) {
+                errorMessage.textContent = 'Please upload your payment screenshot';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Save delivery information
+            const deliveryInfo = {
+                fullName: document.getElementById('full-name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                address: document.getElementById('address').value.trim()
+            };
+            localStorage.setItem('deliveryInfo', JSON.stringify(deliveryInfo));
+
+            const statusDiv = document.getElementById('payment-status');
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'payment-status payment-success';
+            statusDiv.textContent = 'Payment verified successfully! Redirecting to home page...';
+            
+            // Clear order details from localStorage
+            localStorage.removeItem('orderDetails');
+            localStorage.removeItem('deliveryInfo');
+            
+            // Redirect to home page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+
+        // Cancel payment function
+        function cancelPayment() {
+            const statusDiv = document.getElementById('payment-status');
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'payment-status payment-failed';
+            statusDiv.textContent = 'Order cancelled. Redirecting to products page...';
+            
+            // Clear order details from localStorage
+            localStorage.removeItem('orderDetails');
+            localStorage.removeItem('deliveryInfo');
+            
+            // Redirect to products page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'products.html';
+            }, 2000);
+        }
+
+        // Add WhatsApp button to payment instructions
+        const instructionsList = document.querySelector('.instructions-list');
+        const whatsappInstruction = document.createElement('li');
+        whatsappInstruction.innerHTML = 'Need help? Click the WhatsApp button to contact our support team';
+        instructionsList.appendChild(whatsappInstruction);
+    </script>
+</body>
+</html> 

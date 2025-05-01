@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Pickle - Pickles Paradise</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Pickles Paradise</div>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../products.html">Products</a>
+            <a href="../contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Product Details Section -->
+    <section class="product-details-section">
+        <div class="product-details-container">
+            <div class="product-image-large chicken"></div>
+            <div class="product-info">
+                <h1>Chicken Pickle</h1>
+                <div class="product-price">₹399</div>
+                <div class="product-description">
+                    <h2>Description</h2>
+                    <p>Our spicy chicken pickle is made with tender chicken pieces marinated in a special blend of spices. Each piece is carefully cooked and preserved in premium oil, creating a rich and flavorful pickle that's perfect for meat lovers.</p>
+                    
+                    <h2>Ingredients</h2>
+                    <ul>
+                        <li>Tender Chicken Pieces</li>
+                        <li>Mustard Oil</li>
+                        <li>Red Chilli Powder</li>
+                        <li>Ginger-Garlic Paste</li>
+                        <li>Salt</li>
+                        <li>Spices (Fenugreek, Cumin, Mustard Seeds)</li>
+                    </ul>
+
+                    <h2>Storage Instructions</h2>
+                    <p>Store in a cool, dry place. Once opened, refrigerate and consume within 6 months.</p>
+
+                    <h2>Weight</h2>
+                    <p>500g</p>
+                </div>
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" onclick="updateQuantity('chicken', -1)">-</button>
+                        <input type="number" id="chicken-quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" onclick="updateQuantity('chicken', 1)">+</button>
+                    </div>
+                    <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <h2>Related Products</h2>
+        <div class="product-grid">
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image prawn"></div>
+                <h3>Prawn Pickle</h3>
+                <p>Seafood lovers' delight with succulent prawns in spicy masala.</p>
+                <div class="product-price">₹449</div>
+                <a href="prawn-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image fish"></div>
+                <h3>Fish Pickle</h3>
+                <p>Traditional fish pickle made with fresh fish and aromatic spices.</p>
+                <div class="product-price">₹379</div>
+                <a href="fish-pickle.html" class="buy-btn">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Quantity selector functionality
+        function updateQuantity(productId, change) {
+            const input = document.getElementById(`${productId}-quantity`);
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, Math.min(10, currentValue + change));
+            input.value = newValue;
+        }
+
+        // Buy Now functionality
+        function buyNow() {
+            const quantity = parseInt(document.getElementById('chicken-quantity').value);
+            const price = 399; // Price of Chicken Pickle
+            const total = price * quantity;
+            
+            // Save order details to localStorage
+            localStorage.setItem('orderDetails', JSON.stringify({
+                productName: 'Chicken Pickle',
+                quantity: quantity,
+                price: price,
+                total: total
+            }));
+            
+            // Redirect to payment page
+            window.location.href = '../payment.html';
+        }
+    </script>
+</body>
+</html> 

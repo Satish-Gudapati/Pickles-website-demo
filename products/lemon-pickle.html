@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemon Pickle - Pickles Paradise</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Pickles Paradise</div>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../products.html">Products</a>
+            <a href="../contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Product Details Section -->
+    <section class="product-details-section">
+        <div class="product-details-container">
+            <div class="product-image-large lemon"></div>
+            <div class="product-info">
+                <h1>Lemon Pickle</h1>
+                <p>Our tangy lemon pickle is made from fresh, juicy lemons that are carefully selected and cut into perfect pieces. The lemons are marinated in a special blend of spices and oil, creating a perfect balance of sour and spicy flavors that will tantalize your taste buds.</p>
+                
+                <h2>Ingredients</h2>
+                <ul>
+                    <li>Fresh Lemons</li>
+                    <li>Mustard Oil</li>
+                    <li>Red Chili Powder</li>
+                    <li>Salt</li>
+                    <li>Spices (Fenugreek, Fennel, Cumin)</li>
+                </ul>
+
+                <h2>Price</h2>
+                <p class="product-price">₹249</p>
+
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" onclick="updateQuantity('lemon', -1)">-</button>
+                        <input type="number" id="lemon-quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" onclick="updateQuantity('lemon', 1)">+</button>
+                    </div>
+                    <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <h2>Related Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image mango"></div>
+                <h3>Mango Pickle</h3>
+                <p>Our signature mango pickle made from the finest raw mangoes.</p>
+                <p class="product-price">₹299</p>
+                <a href="mango-pickle.html" class="buy-btn">View Details</a>
+            </div>
+            <div class="product-card">
+                <div class="product-image mixed"></div>
+                <h3>Mixed Pickle</h3>
+                <p>A delightful combination of various vegetables pickled in aromatic spices.</p>
+                <p class="product-price">₹279</p>
+                <a href="mixed-pickle.html" class="buy-btn">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Pickles Paradise brings you the finest handcrafted pickles made with love and traditional recipes.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="../index.html">Home</a>
+                <a href="../products.html">Products</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@picklesparadise.com</p>
+                <p>Phone: +91 1234567890</p>
+                <p>Address: 123 Pickle Street, Spice City</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pickles Paradise. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Quantity selector functionality
+        function updateQuantity(productId, change) {
+            const input = document.getElementById(`${productId}-quantity`);
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, Math.min(10, currentValue + change));
+            input.value = newValue;
+        }
+
+        // Buy Now functionality
+        function buyNow() {
+            const quantity = parseInt(document.getElementById('lemon-quantity').value);
+            const price = 249; // Price of Lemon Pickle
+            const total = price * quantity;
+            
+            // Save order details to localStorage
+            localStorage.setItem('orderDetails', JSON.stringify({
+                productName: 'Lemon Pickle',
+                quantity: quantity,
+                price: price,
+                total: total
+            }));
+            
+            // Redirect to payment page
+            window.location.href = '../payment.html';
+        }
+    </script>
+</body>
+</html> 

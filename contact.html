@@ -1,0 +1,34 @@
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="logo">Pickles Paradise</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="cart-icon">
+        <span class="cart-count">0</span>
+        🛒
+    </div>
+</nav>
+
+<!-- Cart Modal -->
+<div class="cart-modal">
+    <div class="cart-content">
+        <button class="close-cart">×</button>
+        <h2>Your Cart</h2>
+        <div class="cart-items"></div>
+        <div class="cart-total"></div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+</div>
+
+<script src="cart.js"></script>
+<script>
+    // Checkout button functionality
+    document.querySelector('.checkout-btn').addEventListener('click', () => {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        localStorage.setItem('cartTotal', total);
+        window.location.href = 'payment.html';
+    });
+</script> 

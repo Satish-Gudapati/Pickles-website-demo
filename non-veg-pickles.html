@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-Vegetarian Pickles - Pickles Paradise</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Pickles Paradise</div>
+        <div class="nav-links">
+            <a href="index.html" class="home-btn">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="veg-pickles.html">Veg Pickles</a>
+            <a href="non-veg-pickles.html" class="active">Non-Veg Pickles</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Non-Vegetarian Pickles</h1>
+            <p>Explore our selection of premium non-vegetarian pickles made with quality meat and seafood.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="product-grid">
+            <!-- Chicken Pickle -->
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image chicken"></div>
+                <h3>Chicken Pickle</h3>
+                <p>Spicy chicken pickle made with tender chicken pieces.</p>
+                <div class="product-price">₹399</div>
+                <a href="products/chicken-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <!-- Prawn Pickle -->
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image prawn"></div>
+                <h3>Prawn Pickle</h3>
+                <p>Seafood lovers' delight with succulent prawns in spicy masala.</p>
+                <div class="product-price">₹449</div>
+                <a href="products/prawn-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <!-- Fish Pickle -->
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image fish"></div>
+                <h3>Fish Pickle</h3>
+                <p>Traditional fish pickle made with fresh fish and aromatic spices.</p>
+                <div class="product-price">₹379</div>
+                <a href="products/fish-pickle.html" class="buy-btn">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html> 

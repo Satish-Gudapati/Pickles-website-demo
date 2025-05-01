@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - Pickles Paradise</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Pickles Paradise</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h2>Our Premium Pickles</h2>
+        
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="veg">Veg Pickles</button>
+            <button class="filter-btn" data-category="non-veg">Non-Veg Pickles</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="product-grid">
+            <!-- Veg Pickles -->
+            <div class="product-card" data-category="veg">
+                <div class="product-image mango"></div>
+                <h3>Mango Pickle</h3>
+                <p>Traditional Indian mango pickle made with raw mangoes and authentic spices.</p>
+                <div class="product-price">₹299</div>
+                <a href="products/mango-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <div class="product-card" data-category="veg">
+                <div class="product-image lemon"></div>
+                <h3>Lemon Pickle</h3>
+                <p>Tangy and spicy lemon pickle perfect for any meal.</p>
+                <div class="product-price">₹249</div>
+                <a href="products/lemon-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <div class="product-card" data-category="veg">
+                <div class="product-image mixed"></div>
+                <h3>Mixed Vegetable Pickle</h3>
+                <p>A delightful blend of various vegetables in authentic spices.</p>
+                <div class="product-price">₹279</div>
+                <a href="products/mixed-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <!-- Non-Veg Pickles -->
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image chicken"></div>
+                <h3>Chicken Pickle</h3>
+                <p>Spicy chicken pickle made with tender chicken pieces.</p>
+                <div class="product-price">₹399</div>
+                <a href="products/chicken-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image prawn"></div>
+                <h3>Prawn Pickle</h3>
+                <p>Seafood lovers' delight with succulent prawns in spicy masala.</p>
+                <div class="product-price">₹449</div>
+                <a href="products/prawn-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <div class="product-card" data-category="non-veg">
+                <div class="product-image fish"></div>
+                <h3>Fish Pickle</h3>
+                <p>Traditional fish pickle made with fresh fish and aromatic spices.</p>
+                <div class="product-price">₹379</div>
+                <a href="products/fish-pickle.html" class="buy-btn">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Get products from localStorage or initialize empty array
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+
+        // Function to display products
+        function displayProducts() {
+            const vegContainer = document.getElementById('veg-pickles');
+            const nonVegContainer = document.getElementById('non-veg-pickles');
+            
+            // Clear existing products
+            vegContainer.innerHTML = '';
+            nonVegContainer.innerHTML = '';
+
+            // Display products
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                if (product.category === 'veg') {
+                    vegContainer.appendChild(productCard);
+                } else {
+                    nonVegContainer.appendChild(productCard);
+                }
+            });
+        }
+
+        // Listen for product updates from dashboard
+        window.addEventListener('productsUpdated', function(event) {
+            products = event.detail.products;
+            displayProducts();
+        });
+
+        // Initial display of products
+        displayProducts();
+    </script>
+</body>
+</html> 

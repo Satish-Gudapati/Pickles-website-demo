@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetarian Pickles - Pickles Paradise</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Pickles Paradise</div>
+        <div class="nav-links">
+            <a href="index.html" class="home-btn">Home</a>
+            <a href="products.html">All Products</a>
+            <a href="veg-pickles.html" class="active">Veg Pickles</a>
+            <a href="non-veg-pickles.html">Non-Veg Pickles</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Vegetarian Pickles</h1>
+            <p>Discover our range of authentic vegetarian pickles made with fresh ingredients and traditional spices.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="product-grid">
+            <!-- Mango Pickle -->
+            <div class="product-card" data-category="veg">
+                <div class="product-image mango"></div>
+                <h3>Mango Pickle</h3>
+                <p>Traditional Indian mango pickle made with raw mangoes and authentic spices.</p>
+                <div class="product-price">₹299</div>
+                <a href="products/mango-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <!-- Lemon Pickle -->
+            <div class="product-card" data-category="veg">
+                <div class="product-image lemon"></div>
+                <h3>Lemon Pickle</h3>
+                <p>Tangy and spicy lemon pickle perfect for any meal.</p>
+                <div class="product-price">₹249</div>
+                <a href="products/lemon-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <!-- Mixed Vegetable Pickle -->
+            <div class="product-card" data-category="veg">
+                <div class="product-image mixed"></div>
+                <h3>Mixed Vegetable Pickle</h3>
+                <p>A delightful blend of various vegetables in authentic spices.</p>
+                <div class="product-price">₹279</div>
+                <a href="products/mixed-pickle.html" class="buy-btn">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html> 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixed Vegetable Pickle - Pickles Paradise</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Pickles Paradise</div>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../products.html">Products</a>
+            <a href="../contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Product Details Section -->
+    <section class="product-details-section">
+        <div class="product-details-container">
+            <div class="product-image-large mixed"></div>
+            <div class="product-info">
+                <h1>Mixed Vegetable Pickle</h1>
+                <div class="product-price">₹279</div>
+                <div class="product-description">
+                    <h2>Description</h2>
+                    <p>Our mixed vegetable pickle is a delightful combination of various fresh vegetables, each carefully selected and marinated in our special blend of spices. This pickle offers a perfect balance of flavors and textures, making it a versatile accompaniment to any meal.</p>
+                    
+                    <h2>Ingredients</h2>
+                    <ul>
+                        <li>Carrots</li>
+                        <li>Cauliflower</li>
+                        <li>Green Beans</li>
+                        <li>Mustard Oil</li>
+                        <li>Red Chilli Powder</li>
+                        <li>Salt</li>
+                        <li>Spices (Fenugreek, Cumin, Mustard Seeds)</li>
+                    </ul>
+
+                    <h2>Storage Instructions</h2>
+                    <p>Store in a cool, dry place. Once opened, refrigerate and consume within 6 months.</p>
+
+                    <h2>Weight</h2>
+                    <p>500g</p>
+                </div>
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" onclick="updateQuantity('mixed', -1)">-</button>
+                        <input type="number" id="mixed-quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" onclick="updateQuantity('mixed', 1)">+</button>
+                    </div>
+                    <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <h2>Related Products</h2>
+        <div class="product-grid">
+            <div class="product-card" data-category="veg">
+                <div class="product-image mango"></div>
+                <h3>Mango Pickle</h3>
+                <p>Traditional Indian mango pickle made with raw mangoes and authentic spices.</p>
+                <div class="product-price">₹299</div>
+                <a href="mango-pickle.html" class="buy-btn">View Details</a>
+            </div>
+
+            <div class="product-card" data-category="veg">
+                <div class="product-image lemon"></div>
+                <h3>Lemon Pickle</h3>
+                <p>Tangy and spicy lemon pickle perfect for any meal.</p>
+                <div class="product-price">₹249</div>
+                <a href="lemon-pickle.html" class="buy-btn">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Quantity selector functionality
+        function updateQuantity(productId, change) {
+            const input = document.getElementById(`${productId}-quantity`);
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(1, Math.min(10, currentValue + change));
+            input.value = newValue;
+        }
+
+        // Buy Now functionality
+        function buyNow() {
+            const quantity = parseInt(document.getElementById('mixed-quantity').value);
+            const price = 279; // Price of Mixed Vegetable Pickle
+            const total = price * quantity;
+            
+            // Save order details to localStorage
+            localStorage.setItem('orderDetails', JSON.stringify({
+                productName: 'Mixed Vegetable Pickle',
+                quantity: quantity,
+                price: price,
+                total: total
+            }));
+            
+            // Redirect to payment page
+            window.location.href = '../payment.html';
+        }
+    </script>
+</body>
+</html> 
+ 
